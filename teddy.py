@@ -42,6 +42,6 @@ validation_generator = data_generator.flow_from_directory(
 
 my_new_model.fit_generator(
     train_generator,
-    steps_per_epoch=75,
+    steps_per_epoch=155,
     validation_data=validation_generator,
     validation_steps=1)
