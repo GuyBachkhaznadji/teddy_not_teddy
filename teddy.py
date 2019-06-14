@@ -21,7 +21,7 @@ my_new_model.add(Dense(num_classes, activation='softmax'))
 my_new_model.layers[0].trainable = False
 
 my_new_model.compile(
-    optimizer='sgd', loss='categorical_crossentropy', metrics=['accuracy'])
+    optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
 
 image_size = 224
@@ -32,7 +32,7 @@ data_generator = ImageDataGenerator(
 train_generator = data_generator.flow_from_directory(
     train_dir,
     target_size=(image_size, image_size),
-    batch_size=10,
+    batch_size=20,
     class_mode='categorical')
 
 validation_generator = data_generator.flow_from_directory(
@@ -42,6 +42,7 @@ validation_generator = data_generator.flow_from_directory(
 
 my_new_model.fit_generator(
     train_generator,
-    steps_per_epoch=155,
+    epochs=2,
+    steps_per_epoch=70,
     validation_data=validation_generator,
     validation_steps=1)
